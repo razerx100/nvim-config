@@ -21,6 +21,7 @@ vim.g.mapleader      = " "
 vim.g.maplocalleader = "\\"
 
 require("lazy").setup({
-    -- spec    = { import = "plugins" },
-    -- checker = { enable = true }
+    spec    = { import = "plugins" },
+    checker = { enable = true }
 })
+require("config.pluginsSetup")
