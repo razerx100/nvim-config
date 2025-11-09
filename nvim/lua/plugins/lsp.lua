@@ -43,12 +43,11 @@ return {
 		return ret
 	end,
 	config = vim.schedule_wrap(function(_, opts)
+		local cmp_capabilities = require('cmp_nvim_lsp').default_capabilities()
+
 		if opts.servers["*"] then
 			vim.lsp.config("*", opts.servers["*"])
 		end
-
-		local mason_all = vim.tbl_keys(require("mason-lspconfig.mappings").get_mason_map().lspconfig_to_package)
-		local mason_exclude = {}
 
 		local function configure(server)
 			if server == "*" then
@@ -56,34 +55,23 @@ return {
 			end
 
 			local opt_server = opts.servers[server]
-			opt_server = opt_server and {} or not opt_server and { enable = false } or opt_server
+			local setup      = opts.setup[server] or opts.setup["*"]
 
-			if not opt_server.enabled then
-				mason_exclude[#mason_exclude + 1] = server
-				return
-			end
+			opt_server.capabilities = opt_server.capabilities and opt_server.capabilities or opts.servers["*"].capabilities
+			opt_server.capabilities = vim.tbl_deep_extend("force", opt_server.capabilities, cmp_capabilities)
 
-			local use_mason = opt_server.mason and vim.tbl_contains(mason_all, server)
-			local setup     = opts.setup[server] or opts.setup["*"]
-
-			if setup and setup(server, opt_server) then
-				mason_exclude[#mason_exclude + 1] = server
-			else
+			if not (setup and setup(server, opt_server)) then
 				vim.lsp.config(server, opt_server)
-
-				if not use_mason then
-					vim.lsp.enable(server)
-				end
 			end
 
-			return use_mason
+			return true
 		end
 
 		local install = vim.tbl_filter(configure, vim.tbl_keys(opts.servers))
 
 		require("mason-lspconfig").setup({
 			ensure_installed = install,
-			automatic_enable = { exclude = mason_exclude }
+			automatic_enable = install
 		})
 	end)
 }

@@ -20,8 +20,8 @@ do
 	local tsBuiltin = require("telescope.builtin")
 
 	vim.keymap.set("n", "<space>fg", tsBuiltin.find_files)
+	vim.keymap.set("n", "<space>fr", tsBuiltin.buffers)
 	vim.keymap.set("n", "<space>fh", tsBuiltin.help_tags)
 	vim.keymap.set("n", "<space>ft", tsBuiltin.live_grep)
 end
 
--- LSP
