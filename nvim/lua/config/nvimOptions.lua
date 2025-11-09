@@ -12,3 +12,4 @@ vim.opt.shiftwidth    = 4 -- Indent in spaces
 vim.opt.autoindent    = true
 vim.opt.fileformat    = "unix" -- File ending
 vim.opt.termguicolors = true
+vim.opt.wrap          = false

@@ -11,9 +11,6 @@ return {
 			view     = { width = 30 },
 			renderer = { group_empty = true },
 			filters  = { dotfiles = true }
-		},
-		config = function(_, opts)
-			require("nvim-tree").setup(opts)
-		end
+		}
 	}
 }
