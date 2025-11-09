@@ -14,3 +14,9 @@
 
 ### nvim-tree & Lualine
   * nvim-web-devicons
+
+### telescope
+  * plenary
+  * ripgrep
+  * fd
+  * neovim LSP
