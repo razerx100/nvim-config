@@ -29,5 +29,4 @@
 ### external LSPs
   * lua-language-server
   * pyright
-  * clangd
-    Must link the `compile_commands.json` to the project root if it is in a different folder.
+  * clangd - Must link the `compile_commands.json` to the project root if it is in a different folder.
