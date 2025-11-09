@@ -20,3 +20,8 @@
   * ripgrep
   * fd
   * neovim LSP
+
+### mason
+  * git
+  * A zip manager and a tar manager
+  * curl/wget on UNIX
