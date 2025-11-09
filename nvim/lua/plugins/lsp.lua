@@ -33,7 +33,8 @@ return {
 							}
 						}
 					}
-				}
+				},
+				pyright = {}
 			},
 			setup = {
 				-- Can have setup functions here. That's why opts is a function instead of a table.

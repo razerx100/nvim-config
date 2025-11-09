@@ -25,3 +25,6 @@
   * git
   * A zip manager and a tar manager
   * curl/wget on UNIX
+
+### external LSPs
+  * pyright
