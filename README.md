@@ -28,4 +28,6 @@
   * bash-language-server
   * clangd - Must link the `compile_commands.json` to the project root if it is in a different folder.
   * lua-language-server
+  * neocmakelsp
   * pyright
+  * vscode-langservers-extracted - json, css, html, eslint

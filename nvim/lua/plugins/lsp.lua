@@ -18,6 +18,7 @@ return {
 				},
 				bashls = {},
 				clangd = {},
+				jsonls = {},
 				lua_ls = {
 					settings = {
 						Lua = {
@@ -35,9 +36,17 @@ return {
 						}
 					}
 				},
+				neocmake = {},
 				pyright = {}
 			},
-			setup = {}
+			setup = {
+				jsonls =  function(_, opt_server)
+					opt_server.capabilities.textDocument.completion.completionItem.snippetSupport = true
+				end,
+				neocmake = function(_, opt_server)
+					opt_server.capabilities.textDocument.completion.completionItem.snippetSupport = true
+				end,
+			}
 		},
 	config = vim.schedule_wrap(function(_, opts)
 		local cmp_capabilities = require('cmp_nvim_lsp').default_capabilities()
