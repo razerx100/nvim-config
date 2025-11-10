@@ -4,8 +4,7 @@ return {
 		"mason.nvim",
 		"mason-lspconfig.nvim"
 	},
-	opts = function()
-		local ret = {
+	opts = {
 			servers = {
 				["*"] = {
 					capabilities = {
@@ -17,6 +16,8 @@ return {
 						}
 					}
 				},
+				bashls = {},
+				clangd = {},
 				lua_ls = {
 					settings = {
 						Lua = {
@@ -34,16 +35,10 @@ return {
 						}
 					}
 				},
-				pyright = {},
-				clangd = {}
+				pyright = {}
 			},
-			setup = {
-				-- Can have setup functions here. That's why opts is a function instead of a table.
-			}
-		}
-
-		return ret
-	end,
+			setup = {}
+		},
 	config = vim.schedule_wrap(function(_, opts)
 		local cmp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 
