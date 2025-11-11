@@ -13,3 +13,7 @@ vim.opt.autoindent    = true
 vim.opt.fileformat    = "unix" -- File ending
 vim.opt.termguicolors = true
 vim.opt.wrap          = false
+vim.opt.clipboard     = "unnamedplus"
+vim.opt.confirm       = true
+vim.opt.expandtab     = true
+vim.opt.cursorline    = true

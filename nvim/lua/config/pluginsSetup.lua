@@ -1,18 +1,13 @@
--- set theme
-do
-	vim.cmd[[colorscheme tokyonight]]
-end
+vim.cmd[[colorscheme tokyonight]]
+
+vim.g.trouble_lualine = true
+
+vim.diagnostic.config({ virtual_text = true })
 
 -- NvimTree
 do
 	local nvimTree = require("nvim-tree")
 	nvimTree.setup(nvimTree.opts)
-end
-
--- Lualine
-do
-	local lualine = require("lualine")
-	lualine.setup(lualine.opts)
 end
 
 -- Telescope 
@@ -54,6 +49,5 @@ end
 
 -- Diagonostic
 do
-	vim.diagnostic.config({ virtual_text = true })
 end
 
