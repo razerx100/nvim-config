@@ -1,7 +1,11 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
-	build = ":TSUpdate",
-	opts  = {
+    branch  = "master", -- Should update to main
+    version = false,
+	build   = ":TSUpdate",
+    event   = { "VeryLazy", "BufReadPost", "BufWritePost", "BufNewFile" },
+    opts_extend = { "ensure_installed" },
+	opts    = {
 	    indent       = { enable = true },
 	    folds        = { enable = true },
 	    auto_install = true,

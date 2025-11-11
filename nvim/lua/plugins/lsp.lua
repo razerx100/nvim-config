@@ -1,10 +1,13 @@
 return {
 	"neovim/nvim-lspconfig",
+    event = { "BufReadPost", "BufWritePost", "BufNewFile" },
 	dependencies = {
 		"mason.nvim",
 		"mason-lspconfig.nvim"
 	},
-	opts = {
+    opts_extend = { "servers.*.keys" },
+	opts        = {
+            codelens = { enabled = true },
 			servers = {
 				["*"] = {
 					capabilities = {

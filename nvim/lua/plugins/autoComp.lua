@@ -3,7 +3,8 @@ return {
 	{ "hrsh7th/cmp-buffer" },
 	{
 		"hrsh7th/nvim-cmp",
-		opts = {
+        event = { "BufReadPost", "BufWritePost", "BufNewFile" },
+		opts  = {
 			sources = {
 				{ name = "nvim_lsp" },
 				{

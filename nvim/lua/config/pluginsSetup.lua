@@ -4,12 +4,6 @@ vim.g.trouble_lualine = true
 
 vim.diagnostic.config({ virtual_text = true })
 
--- NvimTree
-do
-	local nvimTree = require("nvim-tree")
-	nvimTree.setup(nvimTree.opts)
-end
-
 -- Telescope 
 do
 	local tsBuiltin = require("telescope.builtin")
@@ -45,9 +39,5 @@ do
 			["<C-e>"]     = cmp.mapping.abort(),
 		}
 	})
-end
-
--- Diagonostic
-do
 end
 
