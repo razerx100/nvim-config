@@ -52,3 +52,8 @@ do
 	})
 end
 
+-- Diagonostic
+do
+	vim.diagnostic.config({ virtual_text = true })
+end
+
