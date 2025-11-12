@@ -1,7 +1,3 @@
--- Turn netrw off for nvim-tree
-vim.g.loaded_netrw       = 1
-vim.g.loaded_netrwPlugin = 1
-
 vim.wo.number = true
 
 vim.opt.encoding      = "utf-8"
@@ -17,3 +13,18 @@ vim.opt.clipboard     = "unnamedplus"
 vim.opt.confirm       = true
 vim.opt.expandtab     = true
 vim.opt.cursorline    = true
+
+vim.cmd[[colorscheme tokyonight]]
+
+vim.g.trouble_lualine = true
+
+vim.diagnostic.config({ virtual_text = true })
+
+do
+	local tsBuiltin = require("telescope.builtin")
+
+	vim.keymap.set("n", "<leader>fg", tsBuiltin.find_files)
+	vim.keymap.set("n", "<leader>fr", tsBuiltin.buffers)
+	vim.keymap.set("n", "<leader>fh", tsBuiltin.help_tags)
+	vim.keymap.set("n", "<leader>ft", tsBuiltin.live_grep)
+end
