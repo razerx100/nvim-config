@@ -2,10 +2,8 @@ return {
     {
 	    "nvim-treesitter/nvim-treesitter",
         branch  = "master", -- Should update to main
-        version = false,
 	    build   = ":TSUpdate",
-        event   = { "VeryLazy", "BufReadPost", "BufWritePost", "BufNewFile" },
-        opts_extend = { "ensure_installed" },
+        event   = { "BufReadPost", "BufWritePost", "BufNewFile", "VeryLazy", },
 	    opts    = {
 	        indent       = { enable = true },
 	        folds        = { enable = true },
@@ -38,7 +36,11 @@ return {
 			    "xml",
 			    "yaml"
 	        }
-        }
+        },
+        config = function(_, opts)
+            -- Needs this, otherwise highlight doesn't work everywhere.
+            require("nvim-treesitter.configs").setup(opts)
+        end
     },
     -- {
     --    "nvim-treesitter/nvim-treesitter-textobjects",
