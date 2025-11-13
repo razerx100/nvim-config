@@ -6,7 +6,6 @@ vim.opt.tabstop       = 4 -- Tab visibility in spaces
 vim.opt.softtabstop   = 4 -- How many spaces when tab is pressed
 vim.opt.shiftwidth    = 4 -- Indent in spaces
 vim.opt.autoindent    = true
-vim.opt.fileformat    = "unix" -- File ending
 vim.opt.termguicolors = true
 vim.opt.wrap          = false
 vim.opt.clipboard     = "unnamedplus"
@@ -19,13 +18,3 @@ vim.cmd[[colorscheme tokyonight]]
 vim.g.trouble_lualine = true
 
 vim.diagnostic.config({ virtual_text = true })
-
-do
-	local tsBuiltin = require("telescope.builtin")
-
-	vim.keymap.set("n", "<leader>fg", tsBuiltin.find_files)
-	vim.keymap.set("n", "<leader>fv", tsBuiltin.oldfiles)
-	vim.keymap.set("n", "<leader>fr", tsBuiltin.buffers)
-	vim.keymap.set("n", "<leader>fh", tsBuiltin.help_tags)
-	vim.keymap.set("n", "<leader>ft", tsBuiltin.live_grep)
-end
