@@ -1,17 +1,10 @@
 return {
     {
 	    "nvim-treesitter/nvim-treesitter",
-        branch  = "master", -- Should update to main
+        branch  = "main",
 	    build   = ":TSUpdate",
-        event   = { "BufReadPost", "BufWritePost", "BufNewFile", "VeryLazy", },
+        event   = { "BufReadPost", "BufWritePost", "BufNewFile", "VeryLazy" },
 	    opts    = {
-	        indent       = { enable = true },
-	        folds        = { enable = true },
-	        auto_install = true,
-	        highlight    = {
-			    enable                            = true,
-			    additional_vim_regex_highlighting = false
-	        },
 	        ensure_installed = {
 			    "bash",
 			    "c",
@@ -38,16 +31,38 @@ return {
 	        }
         },
         config = function(_, opts)
-            -- Needs this, otherwise highlight doesn't work everywhere.
-            require("nvim-treesitter.configs").setup(opts)
+            local treesitter = require("nvim-treesitter")
+
+            treesitter.install(opts.ensure_installed)
+
+            vim.api.nvim_create_autocmd("FileType", {
+                callback = function(args)
+                    local lang = vim.treesitter.language.get_lang(args.match)
+
+                    if lang and vim.treesitter.language.add(lang) then
+                        vim.treesitter.start(args.buf)
+
+                        vim.wo.foldexpr   = "v:lua.vim.treesitter.foldexpr()"
+                        vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+                    end
+                end
+            })
         end
     },
-    -- {
-    --    "nvim-treesitter/nvim-treesitter-textobjects",
-    --    branch = "master"
-    -- },
-    -- This needs a config function call, otherwise it calls
-    -- nvim-treesitter-textobjects.configs, which doesn't exist.
-    -- Should be fixed in the main branch though. So, will add
-    -- it when I move treesitter to main as well.
+    {
+        "nvim-treesitter/nvim-treesitter-textobjects",
+        branch = "main",
+        event   = { "VeryLazy" },
+        opts   = {
+            select = {
+                lookahead       = true,
+                selection_modes = {
+                    ["@parameter.outer"] = "v",
+                    ["@function.outer"]  = "v",
+                    ["@class.outer"]     = "<c-v>"
+                },
+                include_surrounding_whitespace = false
+            }
+        }
+    }
 }
