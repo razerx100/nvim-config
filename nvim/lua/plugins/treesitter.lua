@@ -3,9 +3,10 @@ return {
 	    "nvim-treesitter/nvim-treesitter",
         branch  = "main",
 	    build   = ":TSUpdate",
-        event   = { "BufReadPost", "BufWritePost", "BufNewFile", "VeryLazy" },
-	    opts    = {
-	        ensure_installed = {
+        lazy    = false,
+        opts    = {},
+	    init    = function()
+	        local ensure_installed = {
 			    "bash",
 			    "c",
 			    "cmake",
@@ -29,22 +30,30 @@ return {
 			    "xml",
 			    "yaml"
 	        }
-        },
-        config = function(_, opts)
-            local treesitter = require("nvim-treesitter")
 
-            treesitter.install(opts.ensure_installed)
+            local to_install = vim.tbl_filter(function(lang)
+                return #vim.api.nvim_get_runtime_file("parser/" .. lang .. ".*", false) == 0
+            end, ensure_installed)
+
+            if #to_install > 0 then
+                require("nvim-treesitter").install(to_install)
+            end
+
+            local filetypes = {}
+            for _, lang in ipairs(ensure_installed) do
+                for _, filetype in ipairs(vim.treesitter.language.get_filetypes(lang)) do
+                    table.insert(filetypes, filetype)
+                end
+            end
 
             vim.api.nvim_create_autocmd("FileType", {
+                desc     = "Start treesitter",
+                pattern  = filetypes,
                 callback = function(args)
-                    local lang = vim.treesitter.language.get_lang(args.match)
+                   vim.treesitter.start(args.buf)
 
-                    if lang and vim.treesitter.language.add(lang) then
-                        vim.treesitter.start(args.buf)
-
-                        vim.wo.foldexpr   = "v:lua.vim.treesitter.foldexpr()"
-                        vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-                    end
+                   vim.wo.foldexpr   = "v:lua.vim.treesitter.foldexpr()"
+                   vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
                 end
             })
         end
@@ -52,7 +61,7 @@ return {
     {
         "nvim-treesitter/nvim-treesitter-textobjects",
         branch = "main",
-        event   = { "VeryLazy" },
+        event  = { "VeryLazy" },
         opts   = {
             select = {
                 lookahead       = true,
