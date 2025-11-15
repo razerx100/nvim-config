@@ -27,3 +27,10 @@ do
         require "nvim-treesitter-textobjects.select".select_textobject("@function.inner", "textobjects")
     end)
 end
+
+-- LSP
+do
+    vim.keymap.set("n", "<leader>ch", function()
+        vim.cmd("LspClangdSwitchSourceHeader")
+    end)
+end
