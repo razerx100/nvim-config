@@ -2,9 +2,10 @@ return {
     "mfussenegger/nvim-lint",
     event = { "BufReadPost", "BufWritePost", "BufNewFile" },
     opts  = {
-        events        = { "BufReadPost", "BufWritePost", "InsertLeave" },
+        events        = { "BufEnter", "BufReadPost", "BufWritePost", "InsertLeave" },
         linters_by_ft = {
 --            cpp = { "clangtidy" } -- clangd already has clangtidy embedded.
+            python = { "pylint" }
         }
     },
     config = function(_, opts)
