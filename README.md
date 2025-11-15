@@ -15,6 +15,8 @@
 ### telescope
   * ripgrep
   * fd
+### telescope-fzf-native
+  * cmake and a C++ compiler
 
 ### mason
   * git
