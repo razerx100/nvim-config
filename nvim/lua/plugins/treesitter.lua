@@ -73,5 +73,10 @@ return {
                 include_surrounding_whitespace = false
             }
         }
+    },
+    {
+        "nvim-treesitter/nvim-treesitter-context",
+        branch = "master",
+        opts   = {}
     }
 }
