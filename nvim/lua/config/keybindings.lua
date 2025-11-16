@@ -31,12 +31,12 @@ end
 -- LSP
 do
 	vim.keymap.set("n", "<leader>ch", function()
-        for _, client in ipairs(vim.lsp.get_clients()) do
-            if client.name == "clangd" then
-		        vim.cmd("LspClangdSwitchSourceHeader")
-                break
-            end
-        end
+		for _, client in ipairs(vim.lsp.get_clients()) do
+			if client.name == "clangd" then
+				vim.cmd("LspClangdSwitchSourceHeader")
+				break
+			end
+		end
 	end, { desc = "Switch source-header" })
 end
 
@@ -48,9 +48,4 @@ do
 			lsp_format = "fallback",
 		})
 	end, { desc = "Format" })
-end
-
--- GitSigns
-do
-    
 end

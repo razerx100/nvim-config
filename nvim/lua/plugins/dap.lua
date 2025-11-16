@@ -8,18 +8,6 @@ return {
 			"rcarriga/nvim-dap-ui",
 		},
 		{
-			"jay-babu/mason-nvim-dap.nvim",
-			dependencies = "mason.nvim",
-			cmd = { "DapInstall", "DapUninstall" },
-			opts = {
-				automatic_installation = true,
-				handlers = {},
-				ensure_installed = {},
-			},
-			-- mason-nvim-dap is loaded when nvim-dap loads
-			config = function() end,
-		},
-		{
 			"mfussenegger/nvim-dap",
 			desc = "Debugging support. Requires language specific adapters to be configured. (see lang extras)",
 
@@ -42,11 +30,7 @@ return {
               { "<leader>dt", function() require("dap").terminate() end, desc = "Terminate" },
               { "<leader>dw", function() require("dap.ui.widgets").hover() end, desc = "Widgets" },
             },
-
 			config = function()
-                local mason_nvim_dap = require("mason-nvim-dap")
-				mason_nvim_dap.setup(mason_nvim_dap.opts)
-
 				vim.api.nvim_set_hl(0, "DapStoppedLine", { default = true, link = "Visual" })
 
 				-- setup dap config by VsCode launch.json file
