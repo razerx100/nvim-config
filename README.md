@@ -38,4 +38,4 @@
   * stylua
 
 ### dap
-  * cpptools
+  * cpptools - The mason installation of `lldb-mi` might need chmod +x
