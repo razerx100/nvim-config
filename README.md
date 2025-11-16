@@ -31,5 +31,8 @@
   * pyright
   * vscode-langservers-extracted - json, css, html, eslint
 
-### Linters
+### linters
   * pylint
+
+### formatter
+  * stylua
