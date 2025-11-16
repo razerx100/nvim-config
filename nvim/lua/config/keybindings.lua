@@ -2,20 +2,20 @@
 do
 	local tsBuiltin = require("telescope.builtin")
 
-	vim.keymap.set("n", "<leader>ff", tsBuiltin.find_files)
-	vim.keymap.set("n", "<leader>fr", tsBuiltin.oldfiles)
-	vim.keymap.set("n", "<leader>fh", tsBuiltin.help_tags)
-	vim.keymap.set("n", "<leader>fl", tsBuiltin.live_grep)
+	vim.keymap.set("n", "<leader>ff", tsBuiltin.find_files, { desc = "Find files" })
+	vim.keymap.set("n", "<leader>fr", tsBuiltin.oldfiles, { desc = "Recent files" })
+	vim.keymap.set("n", "<leader>fh", tsBuiltin.help_tags, { desc = "Help tags" })
+	vim.keymap.set("n", "<leader>fl", tsBuiltin.live_grep, { desc = "Live grep" })
 
 	-- LSP
-	vim.keymap.set("n", "<leader>lr", tsBuiltin.lsp_references)
-	vim.keymap.set("n", "<leader>li", tsBuiltin.lsp_implementations)
-	vim.keymap.set("n", "<leader>ld", tsBuiltin.lsp_definitions)
+	vim.keymap.set("n", "<leader>lr", tsBuiltin.lsp_references, { desc = "References" })
+	vim.keymap.set("n", "<leader>li", tsBuiltin.lsp_implementations, { desc = "Implementations" })
+	vim.keymap.set("n", "<leader>ld", tsBuiltin.lsp_definitions, { desc = "Definitions" })
 
 	-- Git
-	vim.keymap.set("n", "<leader>gc", tsBuiltin.git_commits)
-	vim.keymap.set("n", "<leader>gb", tsBuiltin.git_branches)
-	vim.keymap.set("n", "<leader>gs", tsBuiltin.git_status)
+	vim.keymap.set("n", "<leader>gc", tsBuiltin.git_commits, { desc = "Commits" })
+	vim.keymap.set("n", "<leader>gb", tsBuiltin.git_branches, { desc = "Branches" })
+	vim.keymap.set("n", "<leader>gs", tsBuiltin.git_status, { desc = "Status" })
 end
 
 -- Treesitter-textobject
@@ -37,7 +37,7 @@ do
                 break
             end
         end
-	end)
+	end, { desc = "Switch source-header" })
 end
 
 -- Format
@@ -47,5 +47,10 @@ do
 			timeout_ms = 3000,
 			lsp_format = "fallback",
 		})
-	end)
+	end, { desc = "Format" })
+end
+
+-- GitSigns
+do
+    
 end
