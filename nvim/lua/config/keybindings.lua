@@ -34,6 +34,7 @@ do
         for _, client in ipairs(vim.lsp.get_clients()) do
             if client.name == "clangd" then
 		        vim.cmd("LspClangdSwitchSourceHeader")
+                break
             end
         end
 	end)
