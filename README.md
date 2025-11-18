@@ -39,3 +39,4 @@
 
 ### dap
   * cpptools - The mason installation of `lldb-mi` might need chmod +x
+  * debugpy - Installed via pip
