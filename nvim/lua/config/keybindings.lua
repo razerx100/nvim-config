@@ -1,3 +1,7 @@
+-- Search in Visual
+do
+    vim.keymap.set("v", "<leader>/", "<esc>/\\%V", { desc = "Search in Visual selection" })
+end
 -- Oil
 do
 	vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory." })
@@ -26,10 +30,19 @@ end
 do
 	vim.keymap.set({ "x", "o" }, "af", function()
 		require("nvim-treesitter-textobjects.select").select_textobject("@function.outer", "textobjects")
-	end)
+	end, { desc = "around function" })
 	vim.keymap.set({ "x", "o" }, "if", function()
 		require("nvim-treesitter-textobjects.select").select_textobject("@function.inner", "textobjects")
-	end)
+	end, { desc = "in function" })
+	vim.keymap.set({ "x", "o" }, "ab", function()
+		require("nvim-treesitter-textobjects.select").select_textobject("@block.outer", "textobjects")
+	end, { desc = "around block" })
+	vim.keymap.set({ "x", "o" }, "ib", function()
+		require("nvim-treesitter-textobjects.select").select_textobject("@block.inner", "textobjects")
+	end, { desc = "in block" })
+	vim.keymap.set({ "x", "o" }, "il", function()
+		require("nvim-treesitter-textobjects.select").select_textobject("@loop.inner", "textobjects")
+	end, { desc = "in loop" })
 end
 
 -- LSP
