@@ -38,5 +38,6 @@
   * stylua
 
 ### dap
-  * cpptools - The mason installation of `lldb-mi` might need chmod +x
+  * cpptools - Mason
+  * codelldb - Mason
   * debugpy - Installed via pip

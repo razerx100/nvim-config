@@ -1,6 +1,6 @@
 -- Search in Visual
 do
-    vim.keymap.set("v", "<leader>/", "<esc>/\\%V", { desc = "Search in Visual selection" })
+	vim.keymap.set("v", "<leader>/", "<esc>/\\%V", { desc = "Search in Visual selection" })
 end
 -- Oil
 do

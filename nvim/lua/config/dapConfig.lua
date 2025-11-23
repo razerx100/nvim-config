@@ -18,6 +18,8 @@ end
 
 local dap = require("dap")
 
+-- C/C++
+
 dap.adapters.cppdbg = {
 	id = "cppdbg",
 	type = "executable",
@@ -30,6 +32,22 @@ dap.adapters.cppdbg = {
 		on_config(config)
 	end,
 }
+
+dap.adapters.codelldb = {
+	type = "executable",
+	command = vim.fn.stdpath("data") .. "/mason/bin/codelldb",
+	enrich_config = function(config, on_config)
+		if config.args then
+			config.args = ParseArgs(config.args)
+		end
+
+		on_config(config)
+	end,
+}
+
+dap.adapters.lldb = dap.adapters.codelldb
+
+-- Python
 
 dap.adapters.python = function(cb, config)
 	if config.request == "attach" then
@@ -68,4 +86,5 @@ dap.adapters.python = function(cb, config)
 		})
 	end
 end
+
 dap.adapters.debugpy = dap.adapters.python
