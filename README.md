@@ -1,10 +1,9 @@
 # Instructions
 
 * Install NeoVim.
-  *On Windows, I installed the release build from GitHub but it was kinda old.*
-  *So, also tried building and installing the repo but it wouldn't let me without*
-  *admin access. So, I installed the release build and replaced its binaries with*
-  *the ones I built.*
+  *On Windows, building and installing is difficult. And the latest release*
+  *version might not be the latest. So, in that case the pre-release version*
+  *can be installed instead, which should be a daily build.*
 
 * Copy the `nvim` folder to `~/.config/` on UNIX systems. `~\AppData\Local\` on Windows.
 
