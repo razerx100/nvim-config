@@ -18,4 +18,7 @@ vim.cmd[[colorscheme tokyonight]]
 
 vim.g.trouble_lualine = true
 
-vim.diagnostic.config({ virtual_text = true })
+vim.diagnostic.config({
+    virtual_text = true,
+    severity_sort = true
+})

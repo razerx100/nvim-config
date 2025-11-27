@@ -66,3 +66,16 @@ do
 		})
 	end, { desc = "Format" })
 end
+
+-- Toggle diagnostic virtual lines
+do
+    vim.keymap.set("n", "<leader>td", function()
+        local opts = vim.diagnostic.config()
+
+        if opts then
+            opts.virtual_lines = not opts.virtual_lines
+
+            vim.diagnostic.config(opts)
+        end
+	end, { desc = "Toggle diagnostic virtual-lines" })
+end
