@@ -4,7 +4,7 @@ return {
     opts  = {
         events        = { "BufEnter", "BufReadPost", "BufWritePost", "InsertLeave" },
         linters_by_ft = {
---            cpp = { "clangtidy" } -- clangd already has clangtidy embedded.
+            cpp = { "cppcheck" }, -- clangd already has clangtidy embedded.
             python = { "pylint" }
         }
     },
