@@ -31,6 +31,7 @@
   * git
   * A zip manager and a tar manager
   * curl/wget on UNIX
+  * pwsh on Windows
 
 ### external LSPs
   * bash-language-server
