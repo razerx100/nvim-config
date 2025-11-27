@@ -36,13 +36,15 @@
 ### external LSPs
   * bash-language-server
   * clangd - Must link the `compile_commands.json` to the project root if it is in a different folder.
+    *clangd includes clang-tidy and clang-format.*
   * lua-language-server
   * neocmakelsp
   * pyright
   * vscode-langservers-extracted - json, css, html, eslint
 
-### linters
+### external linters
   * pylint
+  * cppcheck
 
 ### formatter
   * stylua
@@ -50,4 +52,4 @@
 ### dap
   * cpptools - Mason
   * codelldb - Mason
-  * debugpy - Installed via pip
+  * debugpy - Installed via pip. The python3 command isn't available on Windows. So, need to symlink python.exe as python3.exe.
