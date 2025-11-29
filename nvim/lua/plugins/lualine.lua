@@ -20,7 +20,11 @@ return {
 						icon_only = true,
 						separator = "",
 						padding   = { left = 1, right = 0 }
-					}
+					},
+                    {
+                        "filename",
+                        symbols = { unnamed = "" }
+                    }
 				},
 				lualine_x = {"fileformat", "diff"},
 				lualine_y = {"progress"},
