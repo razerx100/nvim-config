@@ -1,4 +1,4 @@
-function ArgSplitter(arg)
+local function ArgSplitter(arg)
 	local arg_list = {}
 
 	for str in string.gmatch(arg, "%S+") do
@@ -8,7 +8,7 @@ function ArgSplitter(arg)
 	return arg_list
 end
 
-function ParseArgs(args)
+local function ParseArgs(args)
 	if type(args) == "string" then -- For now assume, we only need to parse if there is one arg. Which should be a string.
 		return ArgSplitter(args)
 	end
