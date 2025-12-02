@@ -1,7 +1,7 @@
 -- Terminal
 do
     vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>")
-    vim.keymap.set({ "n", "t" }, "<leader>tt", "<CMD>Floaterminal<CR>", { desc = "Toggle floating Terminal" })
+    vim.keymap.set("n", "<leader>tt", "<CMD>Floaterminal<CR>", { desc = "Toggle floating Terminal" })
 end
 
 -- Search in Visual
