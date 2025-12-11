@@ -1,7 +1,7 @@
 -- Terminal
 do
-    vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>")
-    vim.keymap.set("n", "<leader>tt", "<CMD>Floaterminal<CR>", { desc = "Toggle floating Terminal" })
+	vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>")
+	vim.keymap.set("n", "<leader>tt", "<CMD>Floaterminal<CR>", { desc = "Toggle floating Terminal" })
 end
 
 -- Search in Visual
@@ -75,23 +75,32 @@ end
 
 -- Toggle diagnostic virtual lines
 do
-    vim.keymap.set("n", "<leader>td", function()
-        local opts = vim.diagnostic.config()
+	vim.keymap.set("n", "<leader>td", function()
+		local opts = vim.diagnostic.config()
 
-        if opts then
-            opts.virtual_lines = not opts.virtual_lines
+		if opts then
+			opts.virtual_lines = not opts.virtual_lines
 
-            vim.diagnostic.config(opts)
-        end
+			vim.diagnostic.config(opts)
+		end
 	end, { desc = "Toggle diagnostic virtual-lines" })
 end
 
 -- Illuminate
 do
-    vim.keymap.set("n", "]]", function()
-        require("illuminate").goto_next_reference()
+	vim.keymap.set("n", "]]", function()
+		require("illuminate").goto_next_reference()
 	end, { desc = "Next reference" })
-    vim.keymap.set("n", "[[", function()
-        require("illuminate").goto_prev_reference()
-	end, { desc = "Prev reference" })
+	vim.keymap.set("n", "[[", function()
+		require("illuminate").goto_prev_reference()
+	end, { desc = "Previous reference" })
+end
+
+do
+	vim.keymap.set("n", "<leader>cc", "<CMD>GitConflictChooseOurs<CR>", { desc = "Select current changes" })
+	vim.keymap.set("n", "<leader>ci", "<CMD>GitConflictChooseTheirs<CR>", { desc = "Select incoming changes" })
+	vim.keymap.set("n", "<leader>cb", "<CMD>GitConflictChooseBoth<CR>", { desc = "Select both changes" })
+	vim.keymap.set("n", "<leader>c0", "<CMD>GitConflictChooseNone<CR>", { desc = "Select none of the changes" })
+	vim.keymap.set("n", "]x", "<CMD>GitConflictNextConflict<CR>", { desc = "Next conflict" })
+	vim.keymap.set("n", "[x", "<CMD>GitConflictPrevConflict<CR>", { desc = "Previous conflict" })
 end
