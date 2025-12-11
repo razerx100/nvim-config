@@ -51,6 +51,8 @@ return {
 			map("n", "<leader>ghB", function() gs.blame() end, "Blame Buffer")
 			map("n", "<leader>ghd", gs.diffthis, "Diff This")
 			map("n", "<leader>ghD", function() gs.diffthis("~") end, "Diff This ~")
+			map("n", "<leader>gtb", gs.toggle_current_line_blame, "Toggle line blame")
+			map("n", "<leader>gtw", gs.toggle_word_diff, "Toggle word diff")
 			map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk")
 		end
 	}
