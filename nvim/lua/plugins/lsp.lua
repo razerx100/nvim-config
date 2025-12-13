@@ -68,7 +68,11 @@ return {
 					},
 				},
 			},
-			neocmake = {},
+			neocmake = {
+				cmd = { "neocmakelsp", "stdio" },
+				filetypes = { "cmake" },
+				root_markers = { ".git", "build", "cmake" },
+			},
 			pyright = {},
 		},
 		setup = {
@@ -102,7 +106,7 @@ return {
 			if not (setup and setup(server, opt_server)) then
 				vim.lsp.config(server, opt_server)
 
-                vim.lsp.inlay_hint.enable(true)
+				vim.lsp.inlay_hint.enable(true)
 			end
 
 			return true
