@@ -1,43 +1,58 @@
 return {
-    "mfussenegger/nvim-lint",
-    event = { "BufReadPost", "BufWritePost", "BufNewFile" },
-    opts  = {
-        events        = { "BufEnter", "BufReadPost", "BufWritePost", "InsertLeave" },
-        linters_by_ft = {
-            cpp = { "cppcheck" }, -- clangd already has clangtidy embedded.
-            python = { "pylint" }
-        }
-    },
-    config = function(_, opts)
-        local lint = require("lint")
+	"mfussenegger/nvim-lint",
+	event = { "BufReadPost", "BufWritePost", "BufNewFile" },
+	opts = {
+		events = { "BufEnter", "BufReadPost", "BufWritePost", "InsertLeave" },
+		linters_by_ft = {
+			cpp = { "cppcheck" }, -- clangd already has clangtidy embedded.
+			python = { "pylint" },
+		},
+	},
+	config = function(_, opts)
+		local lint = require("lint")
 
-        lint.linters_by_ft = opts.linters_by_ft
+		do
+			local cppcheck = lint.linters.cppcheck
 
-        function Delay(ms, fn)
-            local timer = vim.uv.new_timer()
+			local extra_args = {
+				"--check-level=exhaustive",
+        -- Unused variable checks don't work on headers.
+				"--suppress=unusedStructMember:*.h",
+				"--suppress=unusedStructMember:*.hpp",
+				"--suppress=unusedFunction:*.h",
+				"--suppress=unusedFunction:*.hpp",
+			}
 
-            return function(...)
-                if timer then
-                    local argv = { ... }
+			vim.list_extend(cppcheck.args, extra_args)
+		end
 
-                    timer:start(ms, 0, function()
-                        timer:stop()
-                        vim.schedule_wrap(fn)(unpack(argv))
-                    end)
-                end
-            end
-        end
+		lint.linters_by_ft = opts.linters_by_ft
 
-        function Lint()
-            local names = lint._resolve_linter_by_ft(vim.bo.filetype)
+		function Delay(ms, fn)
+			local timer = vim.uv.new_timer()
 
-            if #names > 0 then
-                lint.try_lint(names)
-            end
-        end
+			return function(...)
+				if timer then
+					local argv = { ... }
 
-        vim.api.nvim_create_autocmd(opts.events, {
-            callback = Delay(100, Lint)
-        })
-    end
+					timer:start(ms, 0, function()
+						timer:stop()
+						vim.schedule_wrap(fn)(unpack(argv))
+					end)
+				end
+			end
+		end
+
+		function Lint()
+			local names = lint._resolve_linter_by_ft(vim.bo.filetype)
+
+			if #names > 0 then
+				lint.try_lint(names)
+			end
+		end
+
+		vim.api.nvim_create_autocmd(opts.events, {
+			callback = Delay(100, Lint),
+		})
+	end,
 }
