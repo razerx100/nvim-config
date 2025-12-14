@@ -85,7 +85,7 @@ do
 	end, { desc = "Switch source-header" })
 	vim.keymap.set("n", "<leader>lf", function()
 		vim.lsp.buf.code_action({ apply = true })
-	end, { desc = "LSP Fix current line" })
+	end, { desc = "Fix current line" })
 end
 
 -- Illuminate
