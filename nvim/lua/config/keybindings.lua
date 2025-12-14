@@ -1,17 +1,39 @@
--- Terminal
+-- Misc
 do
 	vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>")
 	vim.keymap.set("n", "<leader>tt", "<CMD>Floaterminal<CR>", { desc = "Toggle floating Terminal" })
 end
 
--- Search in Visual
 do
 	vim.keymap.set("v", "<leader>/", "<esc>/\\%V", { desc = "Search in Visual selection" })
 end
+
+do
+	vim.keymap.set("n", "<leader>td", function()
+		local opts = vim.diagnostic.config()
+
+		if opts then
+			opts.virtual_lines = not opts.virtual_lines
+
+			vim.diagnostic.config(opts)
+		end
+	end, { desc = "Toggle diagnostic virtual-lines" })
+end
+
+do
+	vim.keymap.set("n", "<leader>cf", function()
+		require("conform").format({
+			timeout_ms = 3000,
+			lsp_format = "fallback",
+		})
+	end, { desc = "Format" })
+end
+
 -- Oil
 do
-	vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory." })
+	vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 end
+
 -- Telescope
 do
 	local tsBuiltin = require("telescope.builtin")
@@ -61,29 +83,9 @@ do
 			end
 		end
 	end, { desc = "Switch source-header" })
-end
-
--- Format
-do
-	vim.keymap.set("n", "<leader>cf", function()
-		require("conform").format({
-			timeout_ms = 3000,
-			lsp_format = "fallback",
-		})
-	end, { desc = "Format" })
-end
-
--- Toggle diagnostic virtual lines
-do
-	vim.keymap.set("n", "<leader>td", function()
-		local opts = vim.diagnostic.config()
-
-		if opts then
-			opts.virtual_lines = not opts.virtual_lines
-
-			vim.diagnostic.config(opts)
-		end
-	end, { desc = "Toggle diagnostic virtual-lines" })
+	vim.keymap.set("n", "<leader>lf", function()
+		vim.lsp.buf.code_action({ apply = true })
+	end, { desc = "LSP Fix current line" })
 end
 
 -- Illuminate
@@ -96,6 +98,7 @@ do
 	end, { desc = "Previous reference" })
 end
 
+-- Git Conflict
 do
 	vim.keymap.set("n", "<leader>cc", "<CMD>GitConflictChooseOurs<CR>", { desc = "Select current changes" })
 	vim.keymap.set("n", "<leader>ci", "<CMD>GitConflictChooseTheirs<CR>", { desc = "Select incoming changes" })
