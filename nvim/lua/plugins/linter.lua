@@ -15,8 +15,7 @@ return {
 			local cppcheck = lint.linters.cppcheck
 
 			local extra_args = {
-				"--check-level=exhaustive",
-        -- Unused variable checks don't work on headers.
+				-- Unused variable checks don't work on headers.
 				"--suppress=unusedStructMember:*.h",
 				"--suppress=unusedStructMember:*.hpp",
 				"--suppress=unusedFunction:*.h",
