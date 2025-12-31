@@ -76,6 +76,9 @@ return {
 			pyright = {},
 		},
 		setup = {
+			["*"] = function(_, opt_server)
+				opt_server.capabilities.textDocument.completion.completionItem.snippetSupport = false
+			end,
 			jsonls = function(_, opt_server)
 				opt_server.capabilities.textDocument.completion.completionItem.snippetSupport = true
 			end,
