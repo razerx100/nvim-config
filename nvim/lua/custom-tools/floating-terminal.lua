@@ -42,7 +42,7 @@ function M.create_floating_window(opts)
 	return { buf = buf, win = win }
 end
 
- function M.toggle_terminal()
+function M.toggle_terminal()
 	if not vim.api.nvim_win_is_valid(M.state.floating.win) then
 		M.state.floating = M.create_floating_window({
 			buf = M.state.floating.buf,
@@ -57,7 +57,7 @@ end
 end
 
 function M.setup()
-    vim.api.nvim_create_user_command("Floaterminal", M.toggle_terminal, {})
+	vim.api.nvim_create_user_command("Floaterminal", M.toggle_terminal, {})
 end
 
 return M

@@ -9,6 +9,11 @@ do
 end
 
 do
+  -- stylua: ignore
+	vim.keymap.set({ "n", "v" }, "<leader>ti", ":ToggleInclude<CR>", { desc = "Toggle the style of C/C++ header include" })
+end
+
+do
 	vim.keymap.set("n", "<leader>td", function()
 		local opts = vim.diagnostic.config()
 
