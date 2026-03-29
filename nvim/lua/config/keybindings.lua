@@ -46,7 +46,8 @@ do
 	vim.keymap.set("n", "<leader>ff", tsBuiltin.find_files, { desc = "Find files" })
 	vim.keymap.set("n", "<leader>fr", tsBuiltin.oldfiles, { desc = "Recent files" })
 	vim.keymap.set("n", "<leader>fh", tsBuiltin.help_tags, { desc = "Help tags" })
-	vim.keymap.set("n", "<leader>fl", tsBuiltin.live_grep, { desc = "Live grep" })
+	-- vim.keymap.set("n", "<leader>fl", tsBuiltin.live_grep, { desc = "Live grep" })
+	vim.keymap.set("n", "<leader>fl", "<CMD>LiveGrepFiltered<CR>", { desc = "Live grep" })
 
 	-- LSP
 	vim.keymap.set("n", "<leader>lr", tsBuiltin.lsp_references, { desc = "References" })
